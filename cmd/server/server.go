@@ -8,95 +8,22 @@ import (
 )
 
 func main() {
+	team := []Pokemon{
+		{Name: "Torchic", Type: "fire", Level: 5, HP: 45},
+		{Name: "Mudkip", Type: "water", Level: 5, HP: 50},
+		{Name: "Treecko", Type: "grass", Level: 5, HP: 40},
+	}
 
-	// typeChart := map[string]map[string]float64{
-	// 	"fire": {
-	// 		"grass": 2.0,
-	// 		"water": 0.5,
-	// 		"fire":  0.5,
-	// 	},
-	// 	"water": {
-	// 		"fire":  2.0,
-	// 		"grass": 0.5,
-	// 		"water": 0.5,
-	// 	},
-	// 	"grass": {
-	// 		"water": 2.0,
-	// 		"fire":  0.5,
-	// 		"grass": 0.5,
-	// 	},
-	// }
-
-	// attackType := "grass"
-	// defenseType := "electric"
-
-	// if multipliers, ok := typeChart[attackType]; ok {
-	// 	if mult, ok := multipliers[defenseType]; ok {
-	// 		fmt.Printf("%s vs %s: %.1fx damage\n", attackType, defenseType, mult)
-	// 	} else {
-	// 		fmt.Printf("%s vs %s: 1.0x damage (neutral)\n", attackType, defenseType)
-	// 	}
-	// }
-
-	// team := []Pokemon{
-	// 	{
-	// 		Name:    "Torchic",
-	// 		Type:    "fire",
-	// 		Level:   5,
-	// 		HP:      45,
-	// 		Attack:  15.5,
-	// 		Defense: 8.0,
-	// 	},
-	// 	{
-	// 		Name:    "Mudkip",
-	// 		Type:    "water",
-	// 		Level:   5,
-	// 		HP:      50,
-	// 		Attack:  12,
-	// 		Defense: 10.0,
-	// 	},
-	// 	{
-	// 		Name:    "Treecko",
-	// 		Type:    "grass",
-	// 		Level:   5,
-	// 		HP:      40,
-	// 		Attack:  14.0,
-	// 		Defense: 7.0,
-	// 	},
-	// }
-
-	// team = append(team, Pokemon{
-	// 	Name:    "Pikachu",
-	// 	Type:    "electric",
-	// 	Level:   5,
-	// 	HP:      45,
-	// 	Attack:  12.0,
-	// 	Defense: 9.0,
-	// })
-
-	// fmt.Println("My team:")
-	// for _, pokemon := range team {
-	// 	pokemon.PrintInfo()
-	// }
-
-	// team[0].TakeDamage(10)
-
-	// team[0].PrintInfo()
-
-	pokemon := ""
-	catchRate := 140
-
-	caught, err := catchPokemon(pokemon, catchRate)
-
+	err := saveTeam("team.txt", team)
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Println("Save error:", err)
 		return
 	}
 
-	if caught {
-		fmt.Printf("Gotcha! %s was caught!\n", pokemon)
-	} else {
-		fmt.Printf("Oh no! %s broke free!\n", pokemon)
+	err = loadTeam("team.txt")
+	if err != nil {
+		fmt.Println("Load error:", err)
+		return
 	}
 }
 

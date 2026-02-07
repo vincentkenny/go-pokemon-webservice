@@ -1,0 +1,3 @@
+Torchic, fire, 5, 45
+Mudkip, water, 5, 50
+Treecko, grass, 5, 40
